@@ -1,16 +1,20 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 const Limitedcounter = () => {
-  const [count, setcount] = useState(0)
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    document.title = count
+  
+  }, [count])
+  
   return (
     <>
-      {count >= 0 ? count : "No going below Zero now reload" }
-      <br />
-      <button onClick={()=>{setcount(count+1)}}>Add one</button>
-      <button onClick={()=>{setcount(count-1)}}>Subtract one</button>
-      <button onClick={()=>{setcount(count-count)}}>Reset</button>
+      <p>{count}</p>
+      <button onClick={()=>{setCount(count+1)}}>Add one</button>
+      <button onClick={()=>{count >=1 ? setCount(count-1) : ""}}>Subtract one</button>
+      <button onClick={()=>{setCount(count-count)}}>Reset</button>
     </>
   )
 }
